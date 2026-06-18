@@ -31,7 +31,7 @@ pipeline {
         }
         stage('AWS Identity') {
             steps {
-                sh 'aws sts get-caller-identiti'
+                sh 'aws sts get-caller-identity'
             }
         }
         stage('Docker build') {
