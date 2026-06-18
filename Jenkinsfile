@@ -61,7 +61,7 @@ pipeline {
         stage ('Push to ECR') {
             steps {
                 sh '''
-                    DOCKER_CONFIG="$WORKSPACE/.docker"docker push $ECR_REPO:latest
+                    DOCKER_CONFIG="$WORKSPACE/.docker" docker push $ECR_REPO:latest
                     '''
             }
         }
