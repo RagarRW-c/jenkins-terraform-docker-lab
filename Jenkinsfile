@@ -35,9 +35,13 @@ pipeline {
             }
         }
         stage('Docker build') {
-            steps {
-                sh 'docker build -t jenkins-lab .'
-            }
+    s       teps {
+                sh '''
+                    mkdir -p "$WORKSPACE/.docker"
+                    echo '{"auths":{}}' > "$WORKSPACE/.docker/config.json"
+                    DOCKER_CONFIG="$WORKSPACE/.docker" docker build -t jenkins-lab .
+                '''
+                }
         }
         stage('Docker image') {
             steps {
