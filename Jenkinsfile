@@ -1,7 +1,7 @@
 pipeline {
     agent any 
 
-    envirnment {
+    environment {
         ECR_REPO = '613136968754.dkr.ecr.eu-central-1.amazonaws.com/jenkins-lab'
     }
 
