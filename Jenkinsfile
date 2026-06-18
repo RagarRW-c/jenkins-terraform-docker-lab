@@ -35,7 +35,7 @@ pipeline {
             }
         }
         stage('Docker build') {
-    s       teps {
+            steps {
                 sh '''
                     mkdir -p "$WORKSPACE/.docker"
                     echo '{"auths":{}}' > "$WORKSPACE/.docker/config.json"
