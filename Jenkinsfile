@@ -52,7 +52,8 @@ pipeline {
         stage ('ECR login') {
             steps {
                 sh '''
-                    aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $ECR_REPO
+                    mkdir -p "$WORKSPACE/.docker"
+                    aws ecr get-login-password --region eu-central-1 | DOCKER_CONFIG="$WORKSPACE/.docker" docker login --username AWS --password-stdin $ECR_REPO
                     '''
             }
         }
@@ -60,7 +61,7 @@ pipeline {
         stage ('Push to ECR') {
             steps {
                 sh '''
-                    docker push $ECR_REPO:latest
+                    DOCKER_CONFIG="$WORKSPACE/.docker"docker push $ECR_REPO:latest
                     '''
             }
         }
